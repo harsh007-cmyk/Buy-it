@@ -16,6 +16,10 @@ body{
     width: 100%;
     margin-top: 0;
 }
+a{
+    text-decoration: none;
+    color: #ffffff;
+}
 #logo{
     background-color:#1F2833;
     border:5px solid #C5C6C7;
@@ -145,7 +149,7 @@ background-color: #ffffff;
     
 }
 .cardOfitem{
-    background-color: rgb(178, 174, 174);
+    background-color: rgb(252, 157, 4);
     width: 30%;
     height: 320px;
     display: flex;

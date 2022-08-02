@@ -1,5 +1,24 @@
 import { offers } from "./offers.js";
 import {Shops,category} from "./shops.js";
+
+
+let loginDetails=JSON.parse(sessionStorage.getItem('login_details'));
+
+let signupDetails=JSON.parse(localStorage.getItem('details_Of_user'));
+
+if(loginDetails){
+    document.querySelector('.outer-login').remove();
+    let logins=document.querySelectorAll('.login');
+    logins[0].innerHTML=signupDetails.Registerd_Name;
+    logins[1].innerHTML=signupDetails.Registerd_Name;
+    document.querySelector('.signin').remove();
+    document.querySelector('.signin').remove();
+}else{
+document.querySelector('.submit').addEventListener('click',validateLogin);
+}
+
+
+
 console.log(offers);
 const todayOffer=document.getElementById("offers");
 console.log(todayOffer);
@@ -40,6 +59,7 @@ category.forEach(element => {
     let categoryHeading=document.createElement('h2');
     categoryHeading.innerHTML=element;
     divForCategory.setAttribute('class','shop-category');
+    categoryHeading.setAttribute('id',element)
     divForCategory.appendChild(categoryHeading);
     console.log(divForCategory);
     divForCategory.appendChild(lisOfshops);
@@ -68,7 +88,7 @@ const shopDetails=[];
 const cardsOfshops=document.querySelectorAll('.cardOfitem');
 cardsOfshops.forEach(element => {
     element.addEventListener('click',(e)=>{
-         localStorage.clear();
+         localStorage.removeItem('data');
         Shops.forEach(ele => {
             // console.log(ele);
             if(ele.id==e.target.id){
@@ -98,15 +118,54 @@ function Resposive(){
 // close.addEventListener('click',()=>{
 //     console.log('harsh');
 // })
-document.querySelector('.loign-window-close').addEventListener('click',()=>{
+const closeLogin=document.querySelector('.loign-window-close')
+if(closeLogin){
+    close_Login();
+}
+
+
+function close_Login(){
+closeLogin.addEventListener('click',()=>{
 document.querySelector('.outer-login').style.display="none";
 })
-let login=document.querySelector('#login');
+let login=document.querySelector('.login');
 login.addEventListener('click',()=>{
     document.querySelector('.outer-login').style.display='flex';
 })
+}
 
 
 function validateLogin(){
-    var user=JSON.parse(localStorage.getItem('user'))
+    let user=JSON.parse(localStorage.getItem('details_Of_user'))
+    const password=document.querySelectorAll('.user-name')[1];
+    const E_mail=document.querySelectorAll('.user-name')[0];
+    console.log(E_mail.value+"emaiillll");
+    if(user.Registerd_E_mail===E_mail.value&&user.password===password.value){
+        let loginobj={E_mail_login:E_mail.value,password_login:password.value};
+        console.log(loginobj+"harshpalathingalalalala") ;
+        window.sessionStorage.setItem('login_details',JSON.stringify(loginobj));
+        document.getElementById('login').innerHTML=signupDetails.Registerd_Name;
+       
+        document.getElementById('signin').remove();
+        document.querySelector('.outer-login').style.display="none";
+    }else{
+        if(!E_mail){
+            alert('Please enter E-mail');
+        }
+        else if(!password){
+            alert('please enter password');
+        }
+        else if(signupDetails.Registerd_E_mail!=E_mail||signupDetails.password!=password)
+        alert('E-mail and password is not matching');
+    }
+}
+
+let obj={a:'a',b:'b',c:'d'};
+console.log(obj);
+
+document.getElementById('search-input').addEventListener('input',searchInput);
+ 
+function searchInput(e){
+    const inputItem=e.target.value;
+    
 }

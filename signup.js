@@ -94,6 +94,7 @@ function clinckOnnext (e){
         else{
             obj.password=paasword;
             window.localStorage.setItem('details_Of_user',JSON.stringify(obj));
+            window.location.href="index.html";
         }
     })    
 }else{

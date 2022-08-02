@@ -1,3 +1,16 @@
+let loginDetails=JSON.parse(sessionStorage.getItem('login_details'));
+
+let signupDetails=JSON.parse(localStorage.getItem('details_Of_user'));
+
+if(loginDetails){
+    let logins=document.querySelector('.Login');
+    logins.innerHTML=signupDetails.Registerd_Name;
+    document.querySelector('.Sign-up').remove();
+    
+}
+
+
+
 let data=JSON.parse(localStorage.getItem('data'));
 console.log(data[0].ImageOfitem);
 let item=document.querySelector('.items');
